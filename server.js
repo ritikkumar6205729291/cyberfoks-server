@@ -3,10 +3,8 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// CORS Enable (Sabse Important!)
-app.use(cors({
-    origin: ['https://cyberfoks.pages.dev', 'https://www.cyberfoks.pages.dev']
-}));
+// CORS - BILKUL OPEN (Sabse Safe)
+app.use(cors()); // ✅ Yahan sirf `cors()` likhein, koi origin restrict NA karein
 
 app.use(express.json());
 
