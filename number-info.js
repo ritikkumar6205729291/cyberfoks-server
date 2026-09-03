@@ -1,5 +1,5 @@
 // API Config
-const API_URL = "https://cyberfoks-server.onrender.com/api/lookup";
+const API_URL = "http://localhost:3000/api/lookup";
 
 async function fetchNumberInfo() {
     const phoneInput = document.getElementById('phoneInput');

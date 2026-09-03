@@ -1,16 +1,15 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
-// CORS - BILKUL OPEN (Sabse Safe)
-app.use(cors()); // ✅ Yahan sirf `cors()` likhein, koi origin restrict NA karein
-
+// CORS - BILKUL OPEN
+app.use(cors());
 app.use(express.json());
 
 // External API Config
 const EXTERNAL_API_URL = "https://ethicaltabbo.in/api/lookup";
-const EXTERNAL_API_KEY = process.env.API_KEY || "Sahil";
+const EXTERNAL_API_KEY = "Sahil";
 
 app.post('/api/lookup', async (req, res) => {
     const { phone } = req.body;
@@ -21,7 +20,6 @@ app.post('/api/lookup', async (req, res) => {
     const cleanNumber = phone.replace(/[^0-9+]/g, '');
 
     try {
-        // External API Call
         const externalResponse = await fetch(`${EXTERNAL_API_URL}?key=${EXTERNAL_API_KEY}&mobile=${cleanNumber}`, {
             method: 'GET'
         });
@@ -31,7 +29,6 @@ app.post('/api/lookup', async (req, res) => {
             return res.status(500).json({ error: externalData.error || "External API error" });
         }
 
-        // Final Response
         return res.json({
             phone: externalData.phone || cleanNumber,
             valid: externalData.valid || true,
