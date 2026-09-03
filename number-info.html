@@ -3,30 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Primary Meta Tags -->
-<title>Cyber Security Research Tools | CyberFoks Platform</title>
-<meta name="title" content="Cyber Security Research Tools | CyberFoks Platform">
-<meta name="description" content="Use CyberFoks research tools for cyber security education, privacy awareness, and data protection.">
-<meta name="keywords" content="cyber security, data protection, privacy research, online safety">
-<meta name="robots" content="index, follow">
-<meta name="author" content="Ritik Yadav">
-
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://cyberfoks.com/number-info.html">
-<meta property="og:title" content="Cyber Security Research Tools | CyberFoks Platform">
-<meta property="og:description" content="Use CyberFoks research tools for cyber security education and privacy awareness.">
-<meta property="og:image" content="https://cyberfoks.com/assets/images/logo.png">
-
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://cyberfoks.com/number-info.html">
-<meta property="twitter:title" content="Cyber Security Research Tools | CyberFoks Platform">
-<meta property="twitter:description" content="Use CyberFoks research tools for cyber security education and privacy awareness.">
-<meta property="twitter:image" content="https://cyberfoks.com/assets/images/logo.png">
-
-<!-- Canonical URL -->
-<link rel="canonical" href="https://cyberfoks.com/number-info.html">
+    <title>CyberFoks | Phone Number OSINT Lookup</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@500;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="css/style.css">
@@ -45,13 +22,13 @@
             <nav class="main-nav" id="main-nav">
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="hacking.html" class="active">Hacking Tools</a></li>
-                    <li><a href="index.html#skills">Skills</a></li>
+                    <li><a href="hacking.html">Hacking Tools</a></li>
+                    <li><a href="documentation.html">Documentation</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
                 <div class="nav-search">
                     <input type="text" id="toolSearch" placeholder="Search tools...">
-                    <button>Search</button>
+                    <button onclick="performSearch()">Search</button>
                 </div>
                 <a href="#" class="btn-login" onclick="showLoginPopup()">Login</a>
             </nav>
@@ -62,21 +39,14 @@
         </div>
     </header>
 
-    <!-- MAIN SECTION -->
+    <!-- NUMBER INFO SECTION -->
     <section class="number-info-section">
-        <!-- Matrix Rain Canvas -->
-        <div class="matrix-rain" id="matrixRain"></div>
-        
         <div class="container">
-            
             <h1 class="section-title">Phone Number <span class="text-accent">OSINT Lookup</span></h1>
-            <p class="section-subtitle">India Only | Powered by <b class="foks">FoksTech</b></p>
+            <p class="section-subtitle">India Only | Powered by EthicalTabbo.in</p>
 
-            <!-- Advanced Lookup Box -->
-            <div class="advanced-lookup-box" id="lookupBox">
-                <!-- Radar -->
-                <div class="radar" id="radar"></div>
-                
+            <!-- INPUT BOX -->
+            <div class="advanced-lookup-box">
                 <div class="form-group">
                     <label for="countrySelect"><strong>Select Country</strong></label>
                     <select id="countrySelect" onchange="checkCountry()">
@@ -100,9 +70,9 @@
                 </div>
             </div>
 
-            <!-- Terminal Result -->
+            <!-- ⚠️ RESULTS CONTAINER (Yahan result dikhega) -->
             <div class="results-container">
-                <div class="terminal-window" id="resultTerminal">
+                <div class="terminal-window" style="display: none;" id="resultTerminal">
                     <div class="terminal-header">
                         <span class="dot red"></span>
                         <span class="dot yellow"></span>
@@ -115,26 +85,6 @@
                 </div>
                 
                 <div id="resultMessage" style="display: none;" class="error-message"></div>
-            </div>
-
-            <!-- Quick Stats -->
-            <div class="quick-stats">
-                <div class="quick-stat">
-                    <h3>10M+</h3>
-                    <p>Records Available</p>
-                </div>
-                <div class="quick-stat">
-                    <h3>99%</h3>
-                    <p>Accuracy Rate</p>
-                </div>
-                <div class="quick-stat">
-                    <h3>0.5s</h3>
-                    <p>Avg Response Time</p>
-                </div>
-                <div class="quick-stat">
-                    <h3>24/7</h3>
-                    <p>API Availability</p>
-                </div>
             </div>
         </div>
     </section>
@@ -164,11 +114,10 @@
                             <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                             <span>YouTube</span>
                         </a>
-                        <!-- LinkedIn Hatao, WhatsApp Channel Lagao -->
-<a href="https://whatsapp.com/channel/0029Vb8o1ScGufItjooG5u3U" target="_blank" class="social-btn whatsapp-channel">
-    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    <span>WhatsApp Channel</span>
-</a>
+                        <a href="https://whatsapp.com/channel/0029Vb8o1ScGufItjooG5u3U" target="_blank" class="social-btn whatsapp-channel">
+                            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            <span>WhatsApp Channel</span>
+                        </a>
                     </div>
                 </div>
 
@@ -176,25 +125,24 @@
                     <h4>Quick Links</h4>
                     <a href="index.html">Home</a>
                     <a href="hacking.html">Hacking Tools</a>
-                    <a href="index.html#skills">My Skills</a>
-                    <a href="#">Documentation</a>
-                    <a href="#">Support</a>
+                    <a href="documentation.html">Documentation</a>
+                    <a href="contact.html">Contact</a>
                 </div>
 
                 <div class="footer-col">
                     <h4>Popular Tools</h4>
                     <a href="number-info.html">Phone Number Info</a>
-                    <a href="number-info.html">IP Lookup</a>
-                    <a href="number-info.html">Domain Lookup</a>
-                    <a href="number-info.html">Social Scraper</a>
-                    <a href="number-info.html">Email Finder</a>
+                    <a href="#">IP Lookup</a>
+                    <a href="#">Domain Lookup</a>
+                    <a href="#">Social Scraper</a>
+                    <a href="#">Email Finder</a>
                 </div>
 
                 <div class="footer-col">
                     <h4>Contact Us</h4>
                     <ul class="footer-contact">
                         <li><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg> support@cyberfoks.com</li>
-                        <li><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg> +91 98765 43210</li>
+                        <li><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg> +91 8674905521</li>
                     </ul>
 
                     <h4 style="margin-top: 20px;">Newsletter</h4>
