@@ -1,5 +1,5 @@
 // API Config - Render URL
-const API_URL = "https://cyberfoks-server.onrender.com/api/lookup";
+const API_URL = "https://flat-morning-2cdf.ritikkumar6205729291.workers.dev/api/lookup";
 
 // Country Check
 function checkCountry() {
