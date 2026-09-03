@@ -1,94 +1,7 @@
-// API Config
-const API_URL = "http://localhost:3000/api/lookup";
-const API_KEY = "Sahil";
+// API Config - Render URL
+const API_URL = "https://cyberfoks-server.onrender.com/api/lookup";
 
-// ==================== MATRIX RAIN ====================
-const canvas = document.getElementById('matrixRain');
-const ctx = canvas.getContext('2d');
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
-const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const nums = '0123456789';
-const alphabet = katakana + latin + nums;
-
-const fontSize = 16;
-const columns = canvas.width / fontSize;
-const drops = [];
-
-for (let x = 0; x < columns; x++) {
-    drops[x] = 1;
-}
-
-function drawMatrix() {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
-    ctx.fillStyle = '#0F0';
-    ctx.font = fontSize + 'px monospace';
-    
-    for (let i = 0; i < drops.length; i++) {
-        const text = alphabet.charAt(Math.random() * alphabet.length);
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-        
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-            drops[i] = 0;
-        }
-        drops[i]++;
-    }
-}
-
-setInterval(drawMatrix, 50);
-
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
-
-// ==================== BOOT SEQUENCE ====================
-const bootText = document.getElementById('bootSequence');
-const bootMessages = [
-    "[ OK ] Initializing CyberFoks OS...",
-    "[ OK ] Loading Kernel Modules...",
-    "[ OK ] Establishing Secure Connection...",
-    "[ OK ] Connecting to OSINT Database...",
-    "[ OK ] System Ready. Awaiting Target..."
-];
-
-let bootIndex = 0;
-const bootInterval = setInterval(() => {
-    bootText.textContent = bootMessages[bootIndex];
-    bootIndex++;
-    if (bootIndex >= bootMessages.length) {
-        clearInterval(bootInterval);
-        bootText.textContent = ">_ SYSTEM READY. AWAITING TARGET...";
-    }
-}, 800);
-
-// ==================== 3D TILT EFFECT ====================
-const lookupBox = document.getElementById('lookupBox');
-
-lookupBox.addEventListener('mousemove', (e) => {
-    const rect = lookupBox.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    
-    const rotateX = ((y - centerY) / centerY) * -10;
-    const rotateY = ((x - centerX) / centerX) * 10;
-    
-    lookupBox.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-});
-
-lookupBox.addEventListener('mouseleave', () => {
-    lookupBox.style.transform = 'rotateX(0) rotateY(0)';
-});
-
-// ==================== COUNTRY CHECK ====================
+// Country Check
 function checkCountry() {
     const select = document.getElementById('countrySelect');
     const scanBtn = document.getElementById('scanBtn');
@@ -104,18 +17,15 @@ function checkCountry() {
     }
 }
 
-// ==================== FETCH NUMBER INFO ====================
 async function fetchNumberInfo() {
     const phoneInput = document.getElementById('phoneInput');
     const resultTerminal = document.getElementById('resultTerminal');
     const terminalOutput = document.getElementById('terminalOutput');
     const resultMessage = document.getElementById('resultMessage');
     const scanBtn = document.getElementById('scanBtn');
-    const radar = document.getElementById('radar');
 
     scanBtn.disabled = true;
     scanBtn.classList.add('disabled');
-    radar.classList.add('active'); // Radar start
 
     const number = phoneInput.value.trim();
 
@@ -124,56 +34,24 @@ async function fetchNumberInfo() {
         resultMessage.textContent = "Please enter a valid 10-digit Indian phone number.";
         scanBtn.disabled = false;
         scanBtn.classList.remove('disabled');
-        radar.classList.remove('active');
         return;
     }
 
     resultMessage.style.display = 'none';
     resultTerminal.style.display = 'block';
-
-    // Hacker Style Loading Animation
-    const loadingPhrases = [
-        "[+] SCANNING TARGET...",
-        "[+] TRACING ROUTE...",
-        "[+] EXTRACTING DATA...",
-        "[+] DECRYPTING INFO...",
-        "[+] PROCESSING RESULTS...",
-        "[+] ANALYZING PATTERNS...",
-        "[+] CROSS REFERENCING...",
-        "[+] VERIFYING INTEGRITY..."
-    ];
-
-    let loadingIndex = 0;
-    terminalOutput.innerHTML = `<div class="result-loading">${loadingPhrases[0]}</div>`;
-
-    // Loading Animation Interval
-    const loadingInterval = setInterval(() => {
-        loadingIndex++;
-        if (loadingIndex < loadingPhrases.length) {
-            terminalOutput.innerHTML = `<div class="result-loading">${loadingPhrases[loadingIndex]}</div>`;
-        }
-    }, 400);
+    terminalOutput.innerHTML = '<div class="result-loading">[+] Scanning Target...</div>';
 
     try {
         const response = await fetch(API_URL, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${API_KEY}`,
-                'x-api-key': API_KEY
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                phone: number,
-                api_key: API_KEY
-            })
+            body: JSON.stringify({ phone: number })
         });
 
         const data = await response.json();
 
-        // Stop loading
-        clearInterval(loadingInterval);
-        radar.classList.remove('active');
-        
         if (!response.ok || data.error) {
             terminalOutput.innerHTML = `<div style="color:red;">Error: ${data.error || 'Request failed'}</div>`;
             scanBtn.disabled = false;
@@ -186,9 +64,9 @@ async function fetchNumberInfo() {
         html += `<div class="result-line"><span class="result-label">🎯 Target:</span> ${data.phone || number}</div>`;
         html += `<div class="result-line"><span class="result-label">📊 Total Records:</span> ${data.total_records || 0}</div>`;
 
-        if (data.records && data.records.length > 0) {
-            for (let i = 0; i < data.records.length; i++) {
-                const record = data.records[i];
+        if (data.data && data.data.length > 0) {
+            for (let i = 0; i < data.data.length; i++) {
+                const record = data.data[i];
                 html += `<div class="hacker-profile-box" style="margin-top: 15px;">`;
                 html += `<div style="color: var(--accent); font-weight: bold;">👤 PROFILE #${i + 1}</div>`;
                 html += `<div><strong>Name:</strong> ${record.name || 'N/A'}</div>`;
@@ -213,8 +91,6 @@ async function fetchNumberInfo() {
 
     } catch (error) {
         console.error(error);
-        clearInterval(loadingInterval);
-        radar.classList.remove('active');
         terminalOutput.innerHTML = `<div style="color:red;">Connection Error. Please check server.</div>`;
     }
 
@@ -222,7 +98,7 @@ async function fetchNumberInfo() {
     scanBtn.classList.remove('disabled');
 }
 
-// ==================== INITIALIZE ====================
+// Initialize
 document.addEventListener('DOMContentLoaded', () => {
     checkCountry();
 });

@@ -1,60 +1,47 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
-// Allow ALL origins
+// CORS Enable
 app.use(cors());
 app.use(express.json());
 
-const VALID_API_KEY = "Sahil";
+// External API Config
 const EXTERNAL_API_URL = "https://ethicaltabbo.in/api/lookup";
-const EXTERNAL_API_KEY = "Sahil";
+const EXTERNAL_API_KEY = process.env.API_KEY || "Sahil";
 
 app.post('/api/lookup', async (req, res) => {
-    // 1. Internal Key Check (Apna server wala check)
-    const apiKey = req.headers['authorization']?.replace('Bearer ', '') || req.body.api_key;
-    if (apiKey !== VALID_API_KEY) {
-        return res.status(401).json({ error: "Missing API key" });
-    }
-
-    // 2. Phone Input
     const { phone } = req.body;
     if (!phone) {
         return res.status(400).json({ error: "Please provide a phone number" });
     }
 
-    // 3. Clean Number (Sirf 10 digit Indian number)
-    const cleanNumber = phone.replace(/\D/g, '').slice(-10); // Last 10 digits
+    const cleanNumber = phone.replace(/[^0-9+]/g, '');
 
     try {
-        // ====== REAL API CALL (GET Request with Query Params) ======
-        // URL format: https://ethicaltabbo.in/api/lookup?key=Sahil&mobile=9876543210
-        const externalUrl = `${EXTERNAL_API_URL}?key=${EXTERNAL_API_KEY}&mobile=${cleanNumber}`;
-        
-        const externalResponse = await fetch(externalUrl, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
+        // External API Call (GET)
+        const externalResponse = await fetch(`${EXTERNAL_API_URL}?key=${EXTERNAL_API_KEY}&mobile=${cleanNumber}`, {
+            method: 'GET'
         });
-
         const externalData = await externalResponse.json();
 
-        // Agar external API error deti hai
         if (!externalResponse.ok || externalData.error) {
             return res.status(500).json({ error: externalData.error || "External API error" });
         }
 
-        // ====== FINAL RESPONSE (Real Data) ======
+        // Final Response
         return res.json({
-            phone: externalData.number || cleanNumber,
-            valid: true,
-            country: "India",
-            country_code: "IN",
+            phone: externalData.phone || cleanNumber,
+            valid: externalData.valid || true,
+            country: externalData.country || "N/A",
+            country_code: externalData.country_code || "",
+            location: externalData.location || "N/A",
+            carrier: externalData.carrier || "N/A",
+            line_type: externalData.line_type || "N/A",
+            breach_status: externalData.breach_status || "No known breaches",
             total_records: externalData.total_records || 0,
-            records: externalData.data || [],
-            breach_status: "Clear"
+            data: externalData.data || []
         });
 
     } catch (error) {
@@ -63,6 +50,10 @@ app.post('/api/lookup', async (req, res) => {
     }
 });
 
-app.listen(port, () => {
-    console.log(`✅ Server running at http://127.0.0.1:${port}`);
+app.get('/', (req, res) => {
+    res.json({ message: "CyberFoks API Server is Running!" });
+});
+
+app.listen(port, '0.0.0.0', () => {
+    console.log(`✅ Server running on port ${port}`);
 });
