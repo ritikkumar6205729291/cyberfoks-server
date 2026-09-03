@@ -1,4 +1,4 @@
-// API Config - Render URL
+// API Config
 const API_URL = "https://cyberfoks-server.onrender.com/api/lookup";
 
 async function fetchNumberInfo() {
