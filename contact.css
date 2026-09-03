@@ -1,0 +1,197 @@
+/* Contact Page Styles */
+.contact-section {
+    padding: 150px 0 80px;
+    background: 
+        linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95)),
+        repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(59, 130, 246, 0.05) 40px, rgba(59, 130, 246, 0.05) 41px),
+        repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(59, 130, 246, 0.05) 40px, rgba(59, 130, 246, 0.05) 41px);
+}
+
+.contact-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+
+/* Contact Info Cards */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-card {
+    background: var(--secondary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 25px;
+    transition: 0.3s;
+}
+
+.contact-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.contact-card h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-card h4 svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--accent);
+}
+
+.contact-card p {
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.contact-card a {
+    color: var(--text-accent);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.contact-card a:hover {
+    text-decoration: underline;
+}
+
+/* WhatsApp Green Card */
+.whatsapp-card {
+    border-left: 4px solid #25D366;
+}
+.whatsapp-card h4 svg { fill: #25D366; }
+.whatsapp-card a { color: #25D366; }
+
+/* Telegram Blue Card */
+.telegram-card {
+    border-left: 4px solid #0088cc;
+}
+.telegram-card h4 svg { fill: #0088cc; }
+.telegram-card a { color: #0088cc; }
+
+/* Instagram Pink Card */
+.instagram-card {
+    border-left: 4px solid #E4405F;
+}
+.instagram-card h4 svg { fill: #E4405F; }
+.instagram-card a { color: #E4405F; }
+
+/* Email Blue Card */
+.email-card {
+    border-left: 4px solid var(--accent);
+}
+.email-card h4 svg { fill: var(--accent); }
+.email-card a { color: var(--accent); }
+/* WhatsApp Channel Social Button */
+.social-btn.whatsapp-channel {
+    color: #25D366;
+    border-color: #25D366;
+}
+
+.social-btn.whatsapp-channel:hover {
+    background: #25D366;
+    color: white;
+}
+
+/* Contact Form */
+.contact-form-container {
+    background: var(--secondary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 30px;
+}
+
+.contact-form-container h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.contact-form-container p {
+    color: var(--text-muted);
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background: var(--primary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-main);
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    transition: 0.3s;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    border-color: #25D366;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* WhatsApp Submit Button */
+.btn-whatsapp {
+    width: 100%;
+    padding: 15px;
+    background: #25D366;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-whatsapp:hover {
+    background: #128C7E;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+}
