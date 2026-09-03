@@ -1,5 +1,5 @@
-// API Config
-const API_URL = "https://flat-morning-2cdf.ritikkumar6205729291.workers.dev/api/lookup";
+// API Config - Render Backend URL
+const API_URL = "https://cyberfoks-server.onrender.com/api/lookup";
 
 async function fetchNumberInfo() {
     const phoneInput = document.getElementById('phoneInput');
