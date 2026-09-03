@@ -1,5 +1,6 @@
-// API Config - Render Backend URL
+// API Config - Render URL
 const API_URL = "https://cyberfoks-server.onrender.com/api/lookup";
+
 async function fetchNumberInfo() {
     const phoneInput = document.getElementById('phoneInput');
     const resultTerminal = document.getElementById('resultTerminal');
