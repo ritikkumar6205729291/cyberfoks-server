@@ -3,7 +3,7 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// CORS (sabse zaroori)
+// CORS Enable (Sabse Important!)
 app.use(cors({
     origin: ['https://cyberfoks.pages.dev', 'https://www.cyberfoks.pages.dev']
 }));
@@ -23,7 +23,7 @@ app.post('/api/lookup', async (req, res) => {
     const cleanNumber = phone.replace(/[^0-9+]/g, '');
 
     try {
-        // External API Call (GET request)
+        // External API Call
         const externalResponse = await fetch(`${EXTERNAL_API_URL}?key=${EXTERNAL_API_KEY}&mobile=${cleanNumber}`, {
             method: 'GET'
         });
@@ -46,7 +46,6 @@ app.post('/api/lookup', async (req, res) => {
             total_records: externalData.total_records || 0,
             data: externalData.data || []
         });
-
     } catch (error) {
         console.error(error);
         return res.status(500).json({ error: "Internal Server Error" });
