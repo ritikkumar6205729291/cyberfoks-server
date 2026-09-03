@@ -17,7 +17,6 @@ hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
 });
 
-// Close mobile menu when a link is clicked
 document.querySelectorAll('.main-nav a').forEach(link => {
     link.addEventListener('click', () => {
         mainNav.classList.remove('active');
@@ -73,6 +72,7 @@ if (toolSearch) {
         }
     });
 }
+
 // ==================== LOGIN POPUP (Coming Soon) ====================
 function showLoginPopup() {
     const modal = document.getElementById('loginModal');
