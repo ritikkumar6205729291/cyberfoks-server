@@ -8,10 +8,11 @@ app.use(cors({
 }));
 app.use(express.json());
 
+// NAYA API URL
 const APIS = {
     "phone": {
         "name": "📱 Phone Number",
-        "endpoint": "https://shuruu-num-to-info-welcome-api-7-da.vercel.app/apis/num_info_v1?key=WELCOME&num=",
+        "endpoint": "https://shuruuu-num-to-info-welcome-7days.vercel.app/apis/num_info_v1?key=WELCOME&num=",
         "example": "9876543210",
         "emoji": "📱"
     }
