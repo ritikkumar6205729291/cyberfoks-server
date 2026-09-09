@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CyberFoks | Pincode OSINT Lookup</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/pincode-style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+    <!-- Header with Navbar - Bigger Logo -->
+    <header class="site-header" id="header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="CyberFoks" class="logo-img" />
+                <span class="logo-text">Cyber<span class="text-accent">Foks</span></span>
+            </a>
+
+            <nav class="main-nav" id="mainNav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="hacking.html" class="active">Hacking Tools</a></li>
+                    <li><a href="documentation.html">Documentation</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-search">
+                    <input type="text" id="toolSearch" placeholder="Search tools..." />
+                    <button onclick="performSearch()"><i class="fas fa-search"></i></button>
+                </div>
+            </nav>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <section class="pincode-section">
+        <div class="container">
+
+            <!-- Header with Animation -->
+            <div class="pincode-header animate-slide-down">
+                <h1><i class="fas fa-map-pin"></i> Pincode OSINT Lookup</h1>
+                <p class="subtitle">India Only | Powered by <b>CyberFoks</b></p>
+            </div>
+
+            <!-- Terminal Command Bar - Kali Linux Style -->
+            <div class="terminal-command-bar animate-fade-in">
+                <span class="terminal-prompt">
+                    <i class="fas fa-terminal"></i> cyberfoks@kali: <span class="path">~/osint</span>
+                </span>
+                <span class="terminal-command-text">
+                    <span class="cmd">$</span> pincode_osint
+                </span>
+                <span class="terminal-cursor"></span>
+            </div>
+
+            <!-- Search Card -->
+            <div class="search-card animate-fade-in">
+                <label for="pincodeInput">
+                    <i class="fas fa-search-location"></i> Enter Pincode
+                </label>
+                <div class="search-row">
+                    <input type="text" id="pincodeInput" placeholder="Enter 6-digit pincode (e.g., 804403)" maxlength="6" autocomplete="off" />
+                    <button class="btn-scan" id="scanBtn">
+                        <i class="fas fa-rocket"></i> Initiate Scan
+                    </button>
+                </div>
+            </div>
+
+            <!-- Terminal Output -->
+            <div class="terminal animate-fade-in">
+                <div class="terminal-header">
+                    <span class="terminal-dot"></span>
+                    <span class="terminal-dot"></span>
+                    <span class="terminal-dot"></span>
+                    <span class="terminal-command">
+                        <i class="fas fa-terminal"></i> root@cyberfoks:~$ pincode_osint
+                    </span>
+                </div>
+                <div class="terminal-body" id="terminalBody">
+                    <div class="line info">[+] Initializing Pincode OSINT...</div>
+                    <div class="line info">[+] Waiting for pincode input...</div>
+                </div>
+            </div>
+
+            <!-- Error Message -->
+            <div class="error-msg animate-fade-in" id="errorMsg">
+                <i class="fas fa-exclamation-circle"></i>
+                <span id="errorText">Invalid pincode</span>
+            </div>
+
+            <!-- Results -->
+            <div class="results-container animate-fade-in" id="resultsContainer">
+                <div class="results-header">
+                    <h3><i class="fas fa-list-ul"></i> Pincode Details</h3>
+                    <span class="count" id="resultCount">
+                        <i class="fas fa-database"></i> 0 records found
+                    </span>
+                </div>
+                <div class="results-grid" id="resultsGrid"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-col">
+                    <a href="index.html" class="logo" style="margin-bottom: 20px;">
+                        <img src="assets/images/logo.png" alt="CyberFoks" class="logo-img" style="height: 50px;" />
+                        <span class="logo-text" style="font-size: 1.5rem;">Cyber<span class="text-accent">Foks</span></span>
+                    </a>
+                    <p>CyberFoks is developed by <strong style="color: var(--text-main);">Ritik Yadav</strong> and it is only for educational and learning purpose.</p>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Powered by <span class="text-accent" style="font-weight: 700;">Fokstech</span></p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="hacking.html">Hacking Tools</a>
+                    <a href="skills.html">Skills</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Popular Tools</h4>
+                    <a href="number-info.html">Phone Number Info</a>
+                    <a href="pincode-info.html">Pincode Lookup</a>
+                    <a href="#">Domain Lookup</a>
+                    <a href="#">Social Scraper</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-envelope"></i> support@cyberfoks.com</li>
+                        <li><i class="fas fa-phone"></i> +91 8674905521</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CyberFoks. All rights reserved. | Developed by <strong style="color: var(--text-main);">Ritik Yadav</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/pincode-script.js"></script>
+    <script>
+        // Navbar functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const mainNav = document.getElementById('mainNav');
+
+            if (hamburger && mainNav) {
+                hamburger.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    this.classList.toggle('active');
+                    mainNav.classList.toggle('active');
+                    document.body.classList.toggle('nav-open');
+                });
+
+                document.addEventListener('click', function(e) {
+                    if (mainNav.classList.contains('active') && 
+                        !mainNav.contains(e.target) && 
+                        !hamburger.contains(e.target)) {
+                        hamburger.classList.remove('active');
+                        mainNav.classList.remove('active');
+                        document.body.classList.remove('nav-open');
+                    }
+                });
+
+                mainNav.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        hamburger.classList.remove('active');
+                        mainNav.classList.remove('active');
+                        document.body.classList.remove('nav-open');
+                    });
+                });
+            }
+
+            window.performSearch = function() {
+                const searchInput = document.getElementById('toolSearch');
+                const query = searchInput.value.trim().toLowerCase();
+                if (query) {
+                    alert('Searching for: ' + query);
+                }
+            };
+
+            document.getElementById('toolSearch').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

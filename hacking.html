@@ -72,29 +72,30 @@
                     </div>
                 </div>
 
-                <!-- Tool 2: IP Address Lookup (COMING SOON) -->
-                <div class="hacking-tool-card" data-category="network">
+                <!-- Tool 2: Pincode Lookup (ACTIVE - REPLACED IP LOOKUP) -->
+                <div class="hacking-tool-card" data-category="osint">
                     <div class="tool-image">
-                        <img src="https://images.unsplash.com/photo-1504805572947-34fad45aed93?q=80&w=800&auto=format&fit=crop" alt="IP Lookup">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                        <img src="assets/images/pincode.png" alt="Pincode Lookup">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
                     </div>
                     <div class="tool-content">
-                        <h3>IP Address Lookup</h3>
-                        <span class="tool-badge">Network</span>
-                        <p class="tool-description">IP address ki details aur location nikaalne ka tool. Jald hi available hoga.</p>
+                        <h3>Pincode Lookup</h3>
+                        <span class="tool-badge">OSINT</span>
+                        <p class="tool-description">Kisi bhi pincode ki poori details, post office, district, aur state ki jankari nikaalein.</p>
                         
                         <div class="how-it-works">
-                            <h4>Coming Soon</h4>
+                            <h4>How it works:</h4>
                             <ol>
-                                <li>IP address enter karein.</li>
-                                <li>Location aur ISP details milengi.</li>
+                                <li>6-digit pincode enter karein.</li>
+                                <li>System India Post API se data fetch karega.</li>
+                                <li>Post office, district, state aur delivery status milegi.</li>
                             </ol>
                         </div>
                         
-                        <button class="btn-launch disabled" disabled>
+                        <a href="pincode-info.html" class="btn-launch">
                             <svg viewBox="0 0 24 24"><path d="M5 3l1.5 4.5L11 9l-4.5 1.5L5 15l-1.5-4.5L-1 9l4.5-1.5L5 3z"/></svg>
-                            Coming Soon
-                        </button>
+                            Launch Tool
+                        </a>
                     </div>
                 </div>
 
@@ -191,6 +192,7 @@
                     <a href="index.html">Home</a>
                     <a href="hacking.html">Hacking Tools</a>
                     <a href="number-info.html">Number Info</a>
+                    <a href="pincode-info.html">Pincode Info</a>
                     <a href="documentation.html">Documentation</a>
                     <a href="contact.html">Contact</a>
                 </div>
@@ -198,7 +200,7 @@
                 <div class="footer-col">
                     <h4>Popular Tools</h4>
                     <a href="number-info.html">Phone Number Info</a>
-                    <a href="#">IP Lookup</a>
+                    <a href="pincode-info.html">Pincode Lookup</a>
                     <a href="#">Domain Lookup</a>
                     <a href="#">Social Scraper</a>
                     <a href="#">Email Finder</a>
@@ -236,12 +238,12 @@
 
     <script src="js/script.js"></script>
     <!-- Coming Soon Modal -->
-<div class="modal-overlay" id="loginModal">
-    <div class="modal-box">
-        <h2>Login Coming Soon</h2>
-        <p>Hamara advanced login system jald hi launch hoga. Tab tak aap bina login ke saare tools use kar sakte hain.</p>
-        <button class="close-modal" onclick="closeLoginPopup()">Got It!</button>
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-box">
+            <h2>Login Coming Soon</h2>
+            <p>Hamara advanced login system jald hi launch hoga. Tab tak aap bina login ke saare tools use kar sakte hain.</p>
+            <button class="close-modal" onclick="closeLoginPopup()">Got It!</button>
+        </div>
     </div>
-</div>
 </body>
 </html>
