@@ -3,43 +3,50 @@ const cors = require('cors');
 const app = express();
 const port = 3000;
 
-// CORS - BILKUL OPEN
-app.use(cors());
+app.use(cors({
+    origin: ['https://cyberfoks.pages.dev', 'https://www.cyberfoks.pages.dev']
+}));
 app.use(express.json());
 
-// External API Config
-const EXTERNAL_API_URL = "https://ethicaltabbo.in/api/lookup";
-const EXTERNAL_API_KEY = "Sahil";
+const APIS = {
+    "phone": {
+        "name": "📱 Phone Number",
+        "endpoint": "https://shuruu-num-to-info-welcome-api-7-da.vercel.app/apis/num_info_v1?key=WELCOME&num=",
+        "example": "9876543210",
+        "emoji": "📱"
+    }
+};
 
-app.post('/api/lookup', async (req, res) => {
-    const { phone } = req.body;
-    if (!phone) {
-        return res.status(400).json({ error: "Please provide a phone number" });
+app.get('/api/lookup/:type', async (req, res) => {
+    const { type } = req.params;
+    const value = req.query.value;
+
+    if (!APIS[type]) {
+        return res.status(404).json({ error: "API type not found" });
     }
 
-    const cleanNumber = phone.replace(/[^0-9+]/g, '');
+    if (!value) {
+        return res.status(400).json({ error: "Please provide a value" });
+    }
+
+    const apiInfo = APIS[type];
+    const url = apiInfo.endpoint + encodeURIComponent(value);
 
     try {
-        const externalResponse = await fetch(`${EXTERNAL_API_URL}?key=${EXTERNAL_API_KEY}&mobile=${cleanNumber}`, {
-            method: 'GET'
-        });
-        const externalData = await externalResponse.json();
+        const response = await fetch(url);
+        const data = await response.json();
 
-        if (!externalResponse.ok || externalData.error) {
-            return res.status(500).json({ error: externalData.error || "External API error" });
+        if (!response.ok || data.status !== "success") {
+            return res.status(404).json({ error: "No data found" });
         }
 
+        // Ab data ka structure "result" array mein hai
         return res.json({
-            phone: externalData.phone || cleanNumber,
-            valid: externalData.valid || true,
-            country: externalData.country || "N/A",
-            country_code: externalData.country_code || "",
-            location: externalData.location || "N/A",
-            carrier: externalData.carrier || "N/A",
-            line_type: externalData.line_type || "N/A",
-            breach_status: externalData.breach_status || "No known breaches",
-            total_records: externalData.total_records || 0,
-            data: externalData.data || []
+            success: true,
+            api: apiInfo.name,
+            value: value,
+            total_results: data.total_results || 0,
+            data: data.result || []
         });
     } catch (error) {
         console.error(error);
