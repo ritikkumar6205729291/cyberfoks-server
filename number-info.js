@@ -1,6 +1,5 @@
 // API Config
 const API_URL = "https://cyberfoks-server.onrender.com/api/lookup";
-
 // Hacker Style Loading Animation
 const scanMessages = [
     "[+] Initializing OSINT Engine...",

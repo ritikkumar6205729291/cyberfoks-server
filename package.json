@@ -1,7 +1,7 @@
 {
   "name": "cyberfoks",
   "version": "1.0.0",
-  "description": "CyberFoks OSINT Toolkit API Server",
+  "description": "CyberFoks OSINT Toolkit",
   "main": "server.js",
   "engines": {
     "node": "20.x"
@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node server.js"
   },
-  "keywords": ["osint", "api", "cyberfoks"],
+  "keywords": ["osint", "cyberfoks"],
   "author": "Ritik Yadav",
   "license": "ISC",
   "dependencies": {
