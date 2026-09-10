@@ -1,13 +1,19 @@
 {
-  "name": "cyberfoks-server",
+  "name": "cyberfoks",
   "version": "1.0.0",
-  "description": "CyberFoks OSINT Server",
+  "description": "CyberFoks OSINT Toolkit API Server",
   "main": "server.js",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "start": "node server.js"
   },
+  "keywords": ["osint", "api", "cyberfoks"],
+  "author": "Ritik Yadav",
+  "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2",
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
   }
 }
