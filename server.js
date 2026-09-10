@@ -23,7 +23,7 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')));
 const APIS = {
     "phone": {
         "name": "📱 Phone Number",
-        "endpoint": "https://shuruuu-num-to-info-welcome-7days.vercel.app/apis/num_info_v1?key=WELCOME&num="
+        "endpoint": "https://anishexploits.com/api/api.php?key=fokstech&num="
     }
 };
 
