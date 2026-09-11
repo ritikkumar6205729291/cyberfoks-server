@@ -1,21 +1,28 @@
+// ============================================================
+// CyberFoks - Number Info Script
+// Render Ready
+// ============================================================
+
 // API Config
 const API_URL = "https://cyberfoks-server.onrender.com/api/lookup";
-// Hacker Style Loading Animation
+
+// Scan messages for loading animation
 const scanMessages = [
-    "[+] Initializing OSINT Engine...",
-    "[+] Connecting to Secure Database...",
-    "[+] Bypassing Firewalls...",
-    "[+] Tracing Mobile Number...",
-    "[+] Extracting Personal Records...",
-    "[+] Decrypting Encrypted Data...",
-    "[+] Cross-Referencing Public Databases...",
-    "[+] Compiling Results...",
-    "[+] FINALIZING TARGET DATA..."
+    "> Initializing OSINT engine...",
+    "> Connecting to secure servers...",
+    "> Bypassing security layers...",
+    "> Fetching personal records...",
+    "> Decrypting data packets...",
+    "> Cross-referencing databases...",
+    "> Extracting information...",
+    "> Finalizing results..."
 ];
 
 let scanInterval = null;
 
+// ========== MAIN FUNCTION ==========
 async function fetchNumberInfo() {
+    
     const phoneInput = document.getElementById('phoneInput');
     const resultTerminal = document.getElementById('resultTerminal');
     const terminalOutput = document.getElementById('terminalOutput');
@@ -27,7 +34,8 @@ async function fetchNumberInfo() {
 
     const number = phoneInput.value.trim();
 
-    if (!number || number.length !== 10) {
+    // Validation
+    if (!number || number.length !== 10 || !/^\d{10}$/.test(number)) {
         resultMessage.style.display = 'block';
         resultMessage.textContent = "Please enter a valid 10-digit Indian phone number.";
         scanBtn.disabled = false;
@@ -41,76 +49,112 @@ async function fetchNumberInfo() {
     // Loading Animation Start
     let msgIndex = 0;
     terminalOutput.innerHTML = `<div class="result-loading">${scanMessages[0]}</div>`;
-    
+
+    if (scanInterval) clearInterval(scanInterval);
     scanInterval = setInterval(() => {
         msgIndex++;
         if (msgIndex < scanMessages.length) {
             terminalOutput.innerHTML = `<div class="result-loading">${scanMessages[msgIndex]}</div>`;
         }
-    }, 500);
+    }, 800);
 
     try {
-        const response = await fetch(`${API_URL}/phone?value=${number}`);
+        // API Call
+        const response = await fetch(`${API_URL}/phone?value=${encodeURIComponent(number)}`);
         const data = await response.json();
 
-        // Animation Stop
         clearInterval(scanInterval);
 
-        if (!response.ok || data.error) {
-            terminalOutput.innerHTML = `<div style="color:red;">Error: ${data.error || 'Request failed'}</div>`;
+        if (!response.ok || !data.success || !data.data || data.data.length === 0) {
+            terminalOutput.innerHTML = `<div class="result-error">❌ No data found for this number.</div>`;
             scanBtn.disabled = false;
             scanBtn.classList.remove('disabled');
             return;
         }
 
-        // Result Display
-        let html = '';
-        html += `<div class="result-line"><span class="result-label">🎯 Target:</span> ${number}</div>`;
-        html += `<div class="result-line"><span class="result-label">📊 Total Results:</span> ${data.total_results || 0}</div>`;
-
-        if (data.data && data.data.length > 0) {
-            for (let i = 0; i < data.data.length; i++) {
-                const record = data.data[i];
-                html += `<div class="hacker-profile-box" style="margin-top: 15px;">`;
-                html += `<div style="color: var(--accent); font-weight: bold;">👤 PROFILE #${i + 1}</div>`;
-                html += `<div><strong>Name:</strong> ${record.name || 'N/A'}</div>`;
-                html += `<div><strong>Father Name:</strong> ${record.fname || 'N/A'}</div>`;
-                html += `<div><strong>Mobile:</strong> ${record.mobile || 'N/A'}</div>`;
-                html += `<div><strong>Email:</strong> ${record.email || 'N/A'}</div>`;
-                html += `<div><strong>Address:</strong> ${record.address || 'N/A'}</div>`;
-                html += `<div><strong>Circle:</strong> ${record.circle || 'N/A'}</div>`;
-                html += `<div><strong>Aadhaar:</strong> ${record.aadhar || 'N/A'}</div>`;
-                html += `</div>`;
-            }
-        } else {
-            html += `<div class="result-line" style="color:red;">No real data found for this number.</div>`;
-        }
-
-        html += `<div class="result-line osint-links" style="margin-top: 20px;"><span class="result-label">Search Links:</span><br>`;
-        html += `<a href="https://www.google.com/search?q=%22${number}%22" target="_blank">Google</a> | `;
-        html += `<a href="https://www.google.com/search?q=%22${number}%22+site%3Afacebook.com" target="_blank">Facebook</a> | `;
-        html += `<a href="https://www.google.com/search?q=%22${number}%22+site%3Ainstagram.com" target="_blank">Instagram</a> | `;
-        html += `<a href="https://www.google.com/search?q=%22${number}%22+site%3Awhatsapp.com" target="_blank">WhatsApp</a>`;
-        html += `</div>`;
-
-        terminalOutput.innerHTML = html;
-        terminalOutput.innerHTML += `<span class="cursor"></span>`;
+        displayResults(data.data, number);
 
     } catch (error) {
-        console.error(error);
         clearInterval(scanInterval);
-        terminalOutput.innerHTML = `<div style="color:red;">Connection Error. Please check server.</div>`;
+        console.error('Error:', error);
+        terminalOutput.innerHTML = `<div class="result-error">❌ Failed to fetch data. Please try again.</div>`;
+    } finally {
+        scanBtn.disabled = false;
+        scanBtn.classList.remove('disabled');
     }
-
-    scanBtn.disabled = false;
-    scanBtn.classList.remove('disabled');
 }
 
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
-    checkCountry();
-});
+// ========== DISPLAY RESULTS ==========
+function displayResults(records, number) {
+    const terminalOutput = document.getElementById('terminalOutput');
 
-document.getElementById('phoneInput').addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') fetchNumberInfo();
+    let html = `<div class="result-success">✅ Found ${records.length} record(s) for ${number}</div>`;
+
+    records.forEach((record, index) => {
+        html += `
+            <div class="result-card" style="animation-delay: ${index * 0.1}s;">
+                <div class="result-card-header">
+                    <i class="fas fa-user"></i> Record #${index + 1}
+                </div>
+                <div class="result-row">
+                    <span class="result-label">Name:</span>
+                    <span class="result-value">${record.name || 'N/A'}</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">Father Name:</span>
+                    <span class="result-value">${record.father_name || 'N/A'}</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">Mobile:</span>
+                    <span class="result-value">${record.mobile || 'N/A'}</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">Alternate:</span>
+                    <span class="result-value">${record.alternate || 'N/A'}</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">Aadhaar:</span>
+                    <span class="result-value">${record.aadhaar || 'N/A'}</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">Address:</span>
+                    <span class="result-value">${record.address || 'N/A'}</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">Circle:</span>
+                    <span class="result-value">${record.circle || 'N/A'}</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">Email:</span>
+                    <span class="result-value">${record.email || 'N/A'}</span>
+                </div>
+            </div>
+        `;
+    });
+
+    terminalOutput.innerHTML = html;
+}
+
+// ========== EVENT LISTENERS ==========
+document.addEventListener('DOMContentLoaded', function() {
+    const scanBtn = document.getElementById('scanBtn');
+    const phoneInput = document.getElementById('phoneInput');
+
+    if (scanBtn) {
+        scanBtn.addEventListener('click', fetchNumberInfo);
+    }
+
+    if (phoneInput) {
+        phoneInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                fetchNumberInfo();
+            }
+        });
+
+        // Only digits, max 10
+        phoneInput.addEventListener('input', function() {
+            this.value = this.value.replace(/\D/g, '').slice(0, 10);
+        });
+    }
 });
