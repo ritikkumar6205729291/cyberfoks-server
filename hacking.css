@@ -1,250 +1,450 @@
-/* Hacking Page Advanced Styles */
+/* ============================================================
+   CyberFoks - Hacking Tools Page
+   ============================================================ */
+
 .hacking-section {
-    padding: 150px 0 80px;
-    background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+    padding: 130px 20px 80px;
+    background: #0a1628;
+    min-height: 100vh;
 }
 
-.section-subtitle {
+.hacking-section .container {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+/* ========== HEADER ========== */
+.hacking-header {
     text-align: center;
-    color: var(--text-muted);
-    margin-top: -30px;
-    margin-bottom: 50px;
-    font-size: 1.1rem;
+    margin-bottom: 60px;
 }
 
-/* Category Filter Buttons */
-.filter-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 50px;
-    flex-wrap: wrap;
-}
-
-.filter-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text-muted);
-    padding: 10px 20px;
+.hacking-badge {
+    display: inline-block;
+    background: rgba(59, 130, 246, 0.15);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    color: #64b5f6;
+    padding: 8px 22px;
     border-radius: 30px;
+    font-size: 0.85rem;
     font-weight: 600;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: 0.3s;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
 }
 
-.filter-btn.active,
-.filter-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: rgba(59, 130, 246, 0.1);
+.hacking-badge i {
+    margin-right: 6px;
 }
 
-/* Tool Cards Grid */
+.hacking-header .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.hacking-header .section-subtitle {
+    color: #667799;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* ========== TOOLS GRID ========== */
 .hacking-tools-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
+/* ========== TOOL CARD ========== */
 .hacking-tool-card {
-    background: var(--primary);
-    border: 2px solid transparent;
+    background: #152238;
+    border: 1px solid #1a3a5c;
     border-radius: 16px;
     overflow: hidden;
-    transition: 0.4s;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
     position: relative;
+}
+
+.hacking-tool-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #1a73e8, transparent);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 3;
+}
+
+.hacking-tool-card:hover::before {
+    opacity: 1;
 }
 
 .hacking-tool-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-10px);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(59, 130, 246, 0.2);
+    transform: translateY(-8px);
+    border-color: #1a73e8;
+    box-shadow: 0 20px 50px rgba(26, 115, 232, 0.2);
 }
 
-/* Tool Image Area (With Real Images) */
+.hacking-tool-card.featured {
+    border-color: rgba(0, 204, 102, 0.4);
+}
+
+.hacking-tool-card.featured:hover {
+    border-color: #00cc66;
+    box-shadow: 0 20px 50px rgba(0, 204, 102, 0.2);
+}
+
+/* ========== TOOL IMAGE ========== */
 .tool-image {
     position: relative;
-    height: 200px;
+    height: 180px;
     overflow: hidden;
-    background: var(--secondary);
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: #0a0f1e;
 }
 
-.tool-image::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background: linear-gradient(180deg, transparent 0%, var(--primary) 100%);
-    z-index: 1;
-}
-
-/* Adding realistic images */
 .tool-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: 0.5s;
+    transition: all 0.5s ease;
+    opacity: 0.5;
 }
 
 .hacking-tool-card:hover .tool-image img {
-    transform: scale(1.1);
+    transform: scale(1.08);
+    opacity: 0.65;
 }
 
-/* Fallback SVG icon if image missing */
-.tool-image svg {
-    width: 80px;
-    height: 80px;
-    fill: var(--accent);
-    filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.5));
-    position: relative;
+.tool-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 0%, #152238 100%);
+    pointer-events: none;
+}
+
+.tool-image-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    background: rgba(26, 115, 232, 0.2);
+    border: 2px solid rgba(26, 115, 232, 0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 2;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(10px);
 }
 
-/* Tool Content */
+.tool-image-icon i {
+    font-size: 1.8rem;
+    color: #1a73e8;
+    transition: all 0.3s ease;
+}
+
+.hacking-tool-card:hover .tool-image-icon {
+    transform: translate(-50%, -50%) scale(1.15) rotate(-8deg);
+    background: rgba(26, 115, 232, 0.35);
+    border-color: #1a73e8;
+}
+
+.hacking-tool-card.featured .tool-image-icon {
+    background: rgba(0, 204, 102, 0.2);
+    border-color: rgba(0, 204, 102, 0.5);
+}
+
+.hacking-tool-card.featured .tool-image-icon i {
+    color: #00cc66;
+}
+
+.hacking-tool-card.featured:hover .tool-image-icon {
+    background: rgba(0, 204, 102, 0.35);
+    border-color: #00cc66;
+}
+
+/* Status Badge */
+.tool-status {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 3;
+}
+
+.tool-status.active {
+    background: rgba(0, 204, 102, 0.9);
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(0, 204, 102, 0.5);
+}
+
+.tool-status.active::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: #ffffff;
+    border-radius: 50%;
+    margin-right: 6px;
+    animation: blink 1.5s ease-in-out infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* ========== TOOL CONTENT ========== */
 .tool-content {
     padding: 25px;
-    position: relative;
-    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.tool-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
 }
 
 .tool-content h3 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.4rem;
-    margin-bottom: 10px;
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
 }
 
 .tool-badge {
     display: inline-block;
-    background: rgba(59, 130, 246, 0.15);
-    color: var(--accent);
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.8rem;
+    background: rgba(26, 115, 232, 0.15);
+    color: #64b5f6;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.7rem;
     font-weight: 700;
-    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    border: 1px solid rgba(26, 115, 232, 0.3);
+}
+
+.tool-badge.temp {
+    background: rgba(0, 204, 102, 0.15);
+    color: #00cc66;
+    border-color: rgba(0, 204, 102, 0.3);
 }
 
 .tool-description {
-    color: var(--text-muted);
-    margin-bottom: 20px;
-    font-size: 1rem;
+    color: #8899bb;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-bottom: 18px;
 }
 
-/* How it works */
-.how-it-works {
-    background: #0a0f1e;
-    border-left: 4px solid var(--accent);
-    border-radius: 0 8px 8px 0;
-    padding: 15px;
-    margin-bottom: 20px;
-    position: relative;
-    z-index: 2;
+/* Tool Features */
+.tool-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 22px;
 }
 
-.how-it-works h4 {
-    color: var(--accent);
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1rem;
-    margin-bottom: 10px;
+.tool-features span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(26, 115, 232, 0.08);
+    border: 1px solid rgba(26, 115, 232, 0.2);
+    color: #8899bb;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
-.how-it-works ol {
-    padding-left: 20px;
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    line-height: 1.8;
+.tool-features span i {
+    color: #00cc66;
+    font-size: 0.7rem;
 }
 
-/* Launch Button (With Gradient) */
+.hacking-tool-card:hover .tool-features span {
+    border-color: rgba(26, 115, 232, 0.4);
+    color: #c8d6e5;
+}
+
+/* Launch Button */
 .btn-launch {
-    width: 100%;
-    padding: 14px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
-    border: none;
-    color: white;
-    border-radius: 10px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    font-size: 1.1rem;
+    width: 100%;
+    padding: 14px 24px;
+    background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
+    color: #ffffff;
     text-decoration: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    margin-top: auto;
     position: relative;
-    z-index: 2;
+    overflow: hidden;
 }
 
-.btn-launch svg {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
+.btn-launch::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -200%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    transition: all 0.5s ease;
+}
+
+.btn-launch:hover::before {
+    left: 200%;
 }
 
 .btn-launch:hover {
-    transform: scale(1.03);
-    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(26, 115, 232, 0.4);
 }
 
-/* Modal Update */
-#toolInputContainer {
-    margin-bottom: 20px;
+.btn-launch i.fa-arrow-right {
+    transition: transform 0.3s ease;
+    margin-left: auto;
 }
 
-#toolInput {
-    width: 100%;
-    padding: 12px;
-    background: var(--primary);
-    border: 1px solid var(--border);
-    color: white;
-    border-radius: 8px;
-    outline: none;
+.btn-launch:hover i.fa-arrow-right {
+    transform: translateX(5px);
 }
 
-#toolInput:focus {
-    border-color: var(--accent);
+.hacking-tool-card.featured .btn-launch {
+    background: linear-gradient(135deg, #00cc66 0%, #009944 100%);
+}
+
+.hacking-tool-card.featured .btn-launch:hover {
+    box-shadow: 0 10px 30px rgba(0, 204, 102, 0.4);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 992px) {
+    .hacking-tools-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+    }
 }
 
 @media (max-width: 768px) {
-    .filter-buttons {
-        gap: 10px;
+    .hacking-section {
+        padding: 100px 15px 60px;
     }
-    
+
+    .hacking-header .section-title {
+        font-size: 2rem;
+    }
+
+    .hacking-header .section-subtitle {
+        font-size: 0.95rem;
+    }
+
     .hacking-tools-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .tool-image {
+        height: 160px;
+    }
+
+    .tool-image-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .tool-image-icon i {
+        font-size: 1.5rem;
+    }
+
+    .tool-content {
+        padding: 20px;
+    }
+
+    .tool-content h3 {
+        font-size: 1.15rem;
+    }
+
+    .tool-description {
+        font-size: 0.88rem;
     }
 }
-/* WhatsApp Channel Social Button */
-.social-btn.whatsapp-channel {
-    color: #25D366;
-    border-color: #25D366;
-}
 
-.social-btn.whatsapp-channel:hover {
-    background: #25D366;
-    color: white;
-}
-/* Disabled Button Style */
-.btn-launch.disabled {
-    background: #333;
-    border: 1px solid #444;
-    color: #888;
-    cursor: not-allowed;
-    box-shadow: none;
-}
+@media (max-width: 480px) {
+    .hacking-header .section-title {
+        font-size: 1.7rem;
+    }
 
-.btn-launch.disabled:hover {
-    transform: none;
-    box-shadow: none;
+    .hacking-badge {
+        font-size: 0.75rem;
+        padding: 6px 16px;
+    }
+
+    .tool-image {
+        height: 140px;
+    }
+
+    .tool-image-icon {
+        width: 55px;
+        height: 55px;
+    }
+
+    .tool-image-icon i {
+        font-size: 1.3rem;
+    }
+
+    .tool-header {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .tool-badge {
+        align-self: flex-start;
+    }
+
+    .btn-launch {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+
+    .tool-features span {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+    }
 }
